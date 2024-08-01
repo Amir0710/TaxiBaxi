@@ -38,6 +38,7 @@ dependencies:
   google_fonts:
   flutter_map:
   latlong2:
+  geocoding:
   flutter_spinkit:
   http:
   image_picker:

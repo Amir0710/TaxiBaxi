@@ -89,7 +89,7 @@ class _UserHomePageState extends State<UserHomePage> {
                 );
               },
               child: Align(
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.centerLeft,
                   child: filePath != ''
                       ? ClipOval(
                           child: filePath.contains(
@@ -107,7 +107,7 @@ class _UserHomePageState extends State<UserHomePage> {
                                   fit: BoxFit.fill,
                                 ),
                         )
-                      : null),
+                      : Icon(Icons.person,size: 40,)),
             ),
           )
         ],

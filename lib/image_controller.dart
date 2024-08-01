@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,6 +38,7 @@ class ImageManagerState extends State<ImageManager> {
     if (imagePath != null) {
       setState(() {
         _imagePath = imagePath;
+        _image = File(imagePath); // Update _image with the loaded image path
       });
     }
   }
@@ -54,6 +56,7 @@ class ImageManagerState extends State<ImageManager> {
     if (pickedFile != null) {
       setState(() {
         _imagePath = pickedFile.path;
+        _image = File(pickedFile.path); // Update _image with the picked file
       });
     }
   }
@@ -63,7 +66,7 @@ class ImageManagerState extends State<ImageManager> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Video Streaming',
+          'Image Manager',
           style: Theme.of(context)
               .textTheme
               .headlineMedium
@@ -78,30 +81,31 @@ class ImageManagerState extends State<ImageManager> {
               children: [
                 _image == null
                     ? Text(
-                  'No image selected',
-                  style: Theme.of(context).textTheme.headlineSmall,
-                )
+                        'No image selected',
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      )
                     : ClipOval(
-                  child: _imagePath!.contains('assets')
-                      ? Image.asset(
-                    _imagePath!,
-                    width: 250,
-                    height: 250,
-                    fit: BoxFit.cover,
-                  )
-                      : Image.file(
-                    _image!,
-                    width: 250,
-                    height: 250,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                        child: _imagePath!.contains('assets')
+                            ? Image.asset(
+                                _imagePath!,
+                                width: 250,
+                                height: 250,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.file(
+                                _image!,
+                                width: 250,
+                                height: 250,
+                                fit: BoxFit.cover,
+                              ),
+                      ),
+                const SizedBox(height: 20),
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _pickImage,
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-                    Theme.of(context).appBarTheme.backgroundColor,
+                        Theme.of(context).appBarTheme.backgroundColor,
                   ),
                   child: Text(
                     'Select Image',
@@ -119,7 +123,6 @@ class ImageManagerState extends State<ImageManager> {
                 if (_imagePath != null) {
                   _saveImage(_imagePath!);
                   widget.updateImage(_imagePath!);
-                  // widget._showSnackBar('image is saved') ;
                 }
               },
               child: const Icon(Icons.check),

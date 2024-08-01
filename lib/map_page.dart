@@ -16,7 +16,7 @@ class MapPage extends StatelessWidget {
             children: [
               TileLayer(
                 urlTemplate:
-                    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                 subdomains: const ['a', 'b', 'c'],
                 userAgentPackageName: 'com.example.app',
               ),
@@ -40,7 +40,7 @@ class MapPage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 12, right: 12, top: 36),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.4),borderRadius: BorderRadius.circular(16)
+                  color: Colors.grey.withOpacity(0.4),borderRadius: BorderRadius.circular(16)
               ),
               child: TextField(
                 decoration: InputDecoration(
